@@ -17,8 +17,8 @@ public class InterstellarDaoTest {
     public void daoTest() throws SQLException {
         PostgreSQLConnectionSource connectionSource = new PostgreSQLConnectionSource(
                 "jdbc:postgresql://localhost/interstellar-test",
-                "interstellar-test",
-                "interstellar-test");
+                "interstellar_test",
+                "interstellar_test");
 
         Connection conn = connectionSource.getConnection();
         Statement stmt = conn.createStatement();
