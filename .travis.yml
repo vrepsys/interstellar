@@ -1,3 +1,8 @@
 language: java
 jdk: 
   - openjdk11
+services:
+  - postgresql
+before_script:
+  - psql -c "CREATE USER interstellar-test WITH PASSWORD interstellar-test;" -U postgres
+  - psql -c "CREATE DATABASE interstellar-test WITH OWNER = interstellar-test;" -U postgres
