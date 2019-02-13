@@ -4,5 +4,6 @@ jdk:
 services:
   - postgresql
 before_script:
-  - psql -c "CREATE USER interstellar_test WITH PASSWORD interstellar_test;" -U postgres
-  - psql -c "CREATE DATABASE interstellar_test WITH OWNER = interstellar_test;" -U postgres
+  - psql -c 'CREATE DATABASE interstellar_test;' -U postgres
+  - psql -c "CREATE USER interstellar_test WITH ENCRYPTED PASSWORD 'interstellar_test';" -U postgres
+  - psql -c 'GRANT ALL PRIVILEGES ON DATABASE interstellar_test TO interstellar_test;' -U postgres
