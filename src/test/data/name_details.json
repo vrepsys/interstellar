@@ -1,0 +1,20 @@
+[
+  {
+    "address": "1G4nASzd9NATfh8v21RzZJGYzCJuxNqKVg",
+    "blockchain": "bitcoin",
+    "did": "did:stack:v0:ScMnCHmmsjMfBzvNZSR57CR7dyYLpfksVo-0",
+    "last_txid": "b4fe847f8882fc16aae5b54fc43350764f4ece5a52125716808bd28d6193d9cb",
+    "status": "registered_subdomain",
+    "zonefile": "$ORIGIN valrepsys.id.blockstack\n$TTL 3600\n_http._tcp\tIN\tURI\t10\t1\t\"https://gaia.blockstack.org/hub/1G4nASzd9NATfh8v21RzZJGYzCJuxNqKVg/profile.json\"\n\n",
+    "zonefile_hash": "ca4bd9e7401f3a3b5e70ba528ee0eeee1c62f093"
+  },
+  {
+    "address": "1DMHWdbv3SFk8cmvdtjfuwAXwx8muUoQTi",
+    "blockchain": "bitcoin",
+    "did": "did:stack:v0:SZeHYUP4moSwevZPBKikTqK6bjNCczsSa7-0",
+    "last_txid": "e732c2da94bb1bc5184474e278e22a989ad708d3491d60ad33dd96d77536c2aa",
+    "status": "registered_subdomain",
+    "zonefile": "$ORIGIN bomberman.id.blockstack\n$TTL 3600\n_http._tcp\tIN\tURI\t10\t1\t\"https://gaia.blockstack.org/hub/1DMHWdbv3SFk8cmvdtjfuwAXwx8muUoQTi/profile.json\"\n\n",
+    "zonefile_hash": "605ede00b9a05f4b7d130d3389c2a7ad4c0054c3"
+  }
+]
