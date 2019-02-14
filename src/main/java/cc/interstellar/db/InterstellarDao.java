@@ -23,7 +23,6 @@ public class InterstellarDao {
                 statement.setString(1, username);
                 statement.addBatch();
             }
-
             statement.executeBatch();
         } catch (SQLException e) {
             throw new InterstellarException(e);

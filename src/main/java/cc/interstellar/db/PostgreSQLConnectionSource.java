@@ -19,6 +19,11 @@ public class PostgreSQLConnectionSource implements ConnectionSource {
         props.setProperty("password", password);
     }
 
+    public PostgreSQLConnectionSource(String url, String user) {
+        this.url = url;
+        props.setProperty("user", user);
+    }
+
     @Override
     public Connection getConnection() {
         try {
