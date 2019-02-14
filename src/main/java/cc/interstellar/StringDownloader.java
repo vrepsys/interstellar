@@ -9,11 +9,16 @@ import java.net.http.HttpResponse.BodyHandlers;
 
 public class StringDownloader {
 
-    public String downloadPage(String url, int page) {
+    public String download(String url, int page) {
+        return download(String.format("%s?page=%d", url, page));
+    }
+
+
+    public String download(String url) {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create(String.format("%s?page=%d", url, page)))
+                .uri(URI.create(url))
                 .build();
         try {
             HttpResponse<String> resp = client.send(request, BodyHandlers.ofString());

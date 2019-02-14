@@ -12,7 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 public class StringDownloaderTest {
 
     @Test
-    public void exampleTest() {
+    public void pageDownload() {
         stubFor(get(urlEqualTo("/download?page=1"))
                 .willReturn(aResponse()
                         .withStatus(200)
@@ -21,9 +21,23 @@ public class StringDownloaderTest {
 
         StringDownloader downloader = new StringDownloader();
 
-        String s = downloader.downloadPage("http://localhost:8080/download", 1);
+        String s = downloader.download("http://localhost:8080/download", 1);
 
         assertEquals(s, "['one', 'two', 'three']");
+    }
+
+    @Test
+    public void download() {
+        stubFor(get(urlEqualTo("/download"))
+                .willReturn(aResponse()
+                        .withStatus(200)
+                        .withBody("test")));
+
+        StringDownloader downloader = new StringDownloader();
+
+        String s = downloader.download("http://localhost:8080/download");
+
+        assertEquals("test", s);
     }
 
 }
