@@ -3,3 +3,6 @@ jdk:
   - openjdk11
 addons:
   postgresql: "10"
+env:
+  global:
+    - PGPORT=5432
