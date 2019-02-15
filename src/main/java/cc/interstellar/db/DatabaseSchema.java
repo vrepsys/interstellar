@@ -15,10 +15,14 @@ public class DatabaseSchema {
     }
 
     public void createSchema() {
+        String[] sqls =
+                {"CREATE TABLE identities (username text not NULL, PRIMARY KEY ( username ))",
+                 "CREATE TABLE apps (username text not NULL, app_name text not null, gaia_url text not null, PRIMARY KEY (username, app_name))"};
         try(Connection conn = connectionSource.getConnection();
             Statement stmt = conn.createStatement()) {
-            String sql = "CREATE TABLE identities (username VARCHAR(255) not NULL, PRIMARY KEY ( username ));";
-            stmt.executeUpdate(sql);
+            for(String sql: sqls) {
+                stmt.executeUpdate(sql);
+            }
         } catch (SQLException e) {
             throw new InterstellarException(e);
         }

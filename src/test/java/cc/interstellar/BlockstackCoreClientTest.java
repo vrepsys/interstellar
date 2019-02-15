@@ -81,14 +81,12 @@ public class BlockstackCoreClientTest {
 
         BlockstackCoreClient coreClient = new BlockstackCoreClient("", downloader);
 
-        List<App> apps = coreClient.getAppsFromProfile("valrepsys.blockstack.id", profileUrl);
+        List<App> apps = coreClient.getAppsFromProfile(profileUrl);
         assertEqualsUnordered(
                 Arrays.asList(
-                        new App("valrepsys.blockstack.id",
-                                "https://dpage.io",
+                        new App("https://dpage.io",
                                 "https://gaia.blockstack.org/hub/18rJAUTgkKDHPqfX2YJSfREXgWguyzVZmZ/"),
-                        new App("valrepsys.blockstack.id",
-                                "https://www.stealthy.im",
+                        new App("https://www.stealthy.im",
                                 "https://gaia.blockstack.org/hub/12sw96PXn1aaSQYYU9rLD6ZCXvMnx9vQT1/")),
                 apps);
     }

@@ -4,18 +4,12 @@ import java.util.Objects;
 
 public class App {
 
-    private final String username;
     private final String name;
     private final String gaiaUrl;
 
-    public App(String username, String name, String gaiaUrl) {
-        this.username = username;
+    public App(String name, String gaiaUrl) {
         this.name = name;
         this.gaiaUrl = gaiaUrl;
-    }
-
-    public String getUsername() {
-        return username;
     }
 
     public String getName() {
@@ -31,21 +25,19 @@ public class App {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         App app = (App) o;
-        return Objects.equals(username, app.username) &&
-                Objects.equals(name, app.name) &&
+        return Objects.equals(name, app.name) &&
                 Objects.equals(gaiaUrl, app.gaiaUrl);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, name, gaiaUrl);
+        return Objects.hash(name, gaiaUrl);
     }
 
     @Override
     public String toString() {
         return "App{" +
-                "username='" + username + '\'' +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", gaiaUrl='" + gaiaUrl + '\'' +
                 '}';
     }

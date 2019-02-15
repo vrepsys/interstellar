@@ -43,7 +43,7 @@ public class BlockstackCoreClient {
         return new UserDetails(username, parseProfileUrl(zonefile).orElse("na"));
     }
 
-    public List<App> getAppsFromProfile(String username, String profileUrl) {
+    public List<App> getAppsFromProfile(String profileUrl) {
         String profile = downloader.download(profileUrl);
         JsonParser parser = new JsonParser();
         JsonElement json = parser.parse(profile);
@@ -55,7 +55,7 @@ public class BlockstackCoreClient {
                     .getAsJsonObject("apps");
 
             return appsJson.entrySet().stream()
-                    .map(entry -> new App(username, entry.getKey(), entry.getValue().getAsString()))
+                    .map(entry -> new App(entry.getKey(), entry.getValue().getAsString()))
                     .collect(Collectors.toList());
         }
         return new ArrayList<>();
