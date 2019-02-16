@@ -6,4 +6,7 @@ public class InterstellarException extends RuntimeException {
         super(cause);
     }
 
+    public InterstellarException(String message) {
+        super(message);
+    }
 }

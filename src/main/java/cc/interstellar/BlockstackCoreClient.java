@@ -5,6 +5,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -16,6 +18,8 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class BlockstackCoreClient {
+
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private String nodeHost;
     private StringDownloader downloader;
