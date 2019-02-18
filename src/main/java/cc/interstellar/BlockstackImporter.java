@@ -23,16 +23,16 @@ public class BlockstackImporter {
 
         InterstellarDao dao = new InterstellarDao(connectionSource);
 
-        dao.saveIdentities(names);
-        dao.saveIdentities(subdomains);
-
-        List<String> identities = dao.getIdentities();
-
-        for (String username : identities) {
-            UserDetails details = client.downloadUserDetails(username);
-            List<App> apps = client.getAppsFromProfile(details.getProfileUrl());
-            dao.rewriteApps(details.getUsername(), apps);
-        }
+//        dao.saveIdentities(names);
+//        dao.saveIdentities(subdomains);
+//
+//        List<BlockstackIdentity> identities = dao.getAllIdentities();
+//
+//        for (String username : identities) {
+//            UserDetails details = client.downloadUserDetails(username);
+//            List<App> apps = client.getAppsFromProfile(details.getProfileUrl());
+//            dao.rewriteApps(details.getUsername(), apps);
+//        }
     }
 
     public static void main(String[] args) {

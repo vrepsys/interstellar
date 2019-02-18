@@ -16,7 +16,7 @@ public class DatabaseSchema {
 
     public void createSchema() {
         String[] sqls =
-                {"CREATE TABLE identities (username text not NULL, PRIMARY KEY ( username ))",
+                {"CREATE TABLE identities (username text NOT NULL, created_at timestamp NOT NULL , profile_updated_at timestamp, PRIMARY KEY ( username ))",
                  "CREATE TABLE apps (username text not NULL, app_name text not null, gaia_url text not null, PRIMARY KEY (username, app_name))"};
         try(Connection conn = connectionSource.getConnection();
             Statement stmt = conn.createStatement()) {

@@ -1,12 +1,13 @@
 package cc.interstellar.db;
 
 import cc.interstellar.App;
+import cc.interstellar.BlockstackIdentity;
 import cc.interstellar.InterstellarException;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.time.Instant;
+import java.time.ZoneOffset;
+import java.util.*;
 
 public class InterstellarDao {
 
@@ -16,13 +17,19 @@ public class InterstellarDao {
         this.connectionSource = connectionSource;
     }
 
-    public void saveIdentities(List<String> identities) {
-        String SQL = "INSERT INTO identities (username) VALUES(?) ON CONFLICT(username) DO NOTHING";
+    public void saveIdentities(List<BlockstackIdentity> identities) {
+        String SQL = "INSERT INTO identities (username, created_at, profile_updated_at) " +
+                     "VALUES(?, ?, ?) ON CONFLICT(username) DO NOTHING";
         try (Connection conn = connectionSource.getConnection();
              PreparedStatement statement = conn.prepareStatement(SQL)) {
-
-            for (String username : identities) {
-                statement.setString(1, username);
+            for (BlockstackIdentity identity : identities) {
+                statement.setString(1, identity.getUsername());
+                statement.setObject(2, identity.getCreatedAt().atOffset(ZoneOffset.UTC));
+                if (identity.getProfileUpdatedAt() != null) {
+                    statement.setObject(3, identity.getProfileUpdatedAt().atOffset(ZoneOffset.UTC));
+                } else {
+                    statement.setNull(3, Types.TIMESTAMP);
+                }
                 statement.addBatch();
             }
             statement.executeBatch();
@@ -31,14 +38,18 @@ public class InterstellarDao {
         }
     }
 
-    public List<String> getIdentities() {
-        String SQL = "SELECT username FROM identities";
+    public List<BlockstackIdentity> getAllIdentities() {
+        String SQL = "SELECT username, created_at, profile_updated_at FROM identities";
         try(Connection conn = connectionSource.getConnection();
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(SQL)) {
-            List<String> identities = new ArrayList<>();
+            List<BlockstackIdentity> identities = new ArrayList<>();
             while(rs.next()) {
-                identities.add(rs.getString("username"));
+                String username = rs.getString("username");
+                Instant createdAt = rs.getTimestamp("created_at").toInstant();
+                java.sql.Timestamp profileUpdatedAtTimestamp = rs.getTimestamp("profile_updated_at");
+                Instant profileUpdatedAt = profileUpdatedAtTimestamp != null ? profileUpdatedAtTimestamp.toInstant() : null;
+                identities.add(new BlockstackIdentity(username, createdAt, profileUpdatedAt));
             }
             return identities;
         } catch (SQLException e) {

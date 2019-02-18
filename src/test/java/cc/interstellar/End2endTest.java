@@ -13,9 +13,14 @@ public class End2endTest {
 
     @Test
     void main() {
-//        FakeBlockstackNode blockstackNode = new FakeBlockstackNode();
-//        blockstackNode.start();
+//      FakeBlockstackNode blockstackNode = new FakeBlockstackNode();
+//      blockstackNode.start();
 //
+
+        // start importing names
+
+        // start the process for importing apps for new names
+
 //        // import names and user profiles from core indexer
 //        BlockstackCoreClient importer = new BlockstackCoreClient("localhost", new StringDownloader());
 //
